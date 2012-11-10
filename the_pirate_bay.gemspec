@@ -21,4 +21,5 @@ Gem::Specification.new do |gem|
   gem.add_dependency "nokogiri", "~> 1.5.5"
   
   gem.add_development_dependency "rspec", "~> 2.11.0"
+  gem.add_development_dependency "webmock", "~> 1.9.0"
 end

@@ -3,25 +3,31 @@ require "spec_helper"
 describe ThePirateBay::Torrent do
   let(:api) { ThePirateBay.new }
     
-  context ".search", focus: true do
-    let(:torrents) { api.torrents.search("Fringe") }
+  context ".search" do
+    before :all do
+      stub_get("search/Fringe/0/99/0").
+        to_return(:status => 200, :body => fixture("torrent/search.html"))
+      @torrents = api.torrents.search("Fringe")
+    end
     
     it "returns torrents results" do
-      torrents.class.should == Array
+      @torrents.class.should == Array
     end
     
     it "instantiates torrents collection objects" do
-      torrents.first.class.should == ThePirateBay::Torrent::Collection
+      @torrents.first.class.should == ThePirateBay::Torrent::Collection
     end
     
     it "assigns torrents attributes" do
-      torrents.first.id.should == "7811310"
+      @torrents.first.id.should == "7810640"
     end
   end
   
   context ".find" do
     it "returns a particular torrent" do
-      api.torrents.find("7723168").should include("Fringe S05E03 HDTV")
+      stub_get("torrent/7723168").
+        to_return(:status => 200, :body => fixture("torrent/find.html"))
+      api.torrents.find("7723168").css('head title').text.should include("Fringe S05E03 HDTV")
     end
   end
 end

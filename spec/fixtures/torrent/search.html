@@ -1,0 +1,692 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+	<title>The Pirate Bay - The galaxy's most resilient bittorrent site</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link rel="search" type="application/opensearchdescription+xml" href="//static.thepiratebay.se/opensearch.xml" title="Search The Pirate Bay" />
+	<link rel="stylesheet" type="text/css" href="//static.thepiratebay.se/css/pirate6.css"/>
+	<style type="text/css">
+		.searchBox{
+			margin: 6px;
+			width: 300px;
+			vertical-align: middle;
+			padding: 2px;
+		        background-image:url('//static.thepiratebay.se/img/icon-https.gif');
+        		background-repeat:no-repeat;
+		        background-position: right;
+		}
+
+		.detLink {
+			font-size: 1.2em;
+			font-weight: 400;
+		}
+		.detDesc {
+			color: #4e5456;
+		}
+		.detDesc a:hover {
+			color: #000099;
+			text-decoration: underline;
+		}
+		.sortby {
+			text-align: left;
+			float: left;
+		}
+		.detName {
+			padding-top: 3px;
+			padding-bottom: 2px;
+		}
+		.viewswitch {
+			font-style: normal;
+			float: right;
+			text-align: right;
+			font-weight: normal;
+		}
+	</style>
+	<script src="//static.thepiratebay.se/js/tpb.js" type="text/javascript"></script>
+
+        <style type="text/css">
+		table#sponsoredLinks a { border: 0; }
+		table#sponsoredLinks a:hover { text-decoration: underline; }
+                table#sponsoredLinks td.downbut a {border: none;}
+                table#sponsoredLinks {min-width: 400px; text-align: left; width: 100%; margin: 0 0 10px 0; border-left: solid 1px #ffffff;}
+                table#sponsoredLinks th {padding: 7px; background-color: #D2B9A6;}
+		table#sponsoredLinks td {padding: 2px 4px; background-color: #F6F1EE; font-weight: bold; font-style: italic; text-align: right; white-space: nowrap;}
+                table#sponsoredLinks td img {border: 0;}
+                table#sponsoredLinks td.first {font-style: normal; text-align: left;}
+                table#sponsoredLinks td.first img {margin: 0 5px 0 0; vertical-align: -7px;}
+                table#sponsoredLinks tr:hover td {background-color: #FFFFFF;}
+                table#sponsoredLinks td.downbut {width: 170px;}
+        </style>
+
+	<script language="javascript" type="text/javascript">if (top.location != self.location) {top.location.replace(self.location);}</script>
+</head>
+
+<body>
+	<div id="header">
+
+
+		<div class="ad">
+		 <iframe src="http://cdn2.adexprt.com/clkads/top.html" width="468" height="60" frameborder="0" scrolling="no"></iframe>
+		</div>
+			<form method="get" id="q" action="/s/">
+			<a href="/" class="img"><img src="//static.thepiratebay.se/img/tpblogo_sm_ny.gif" id="TPBlogo" alt="The Pirate Bay" /></a>
+			<b><a href="/" title="Search Torrents">Search Torrents</a></b>&nbsp;&nbsp;|&nbsp;
+			<a href="/browse" title="Browse Torrents">Browse Torrents</a>&nbsp;&nbsp;|&nbsp;
+			<a href="/recent" title="Recent Torrent">Recent Torrents</a>&nbsp;&nbsp;|&nbsp;
+			<a href="/tv" title="TV shows">TV shows</a>&nbsp;&nbsp;|&nbsp;
+			<a href="/music" title="Music">Music</a>&nbsp;&nbsp;|&nbsp;
+			<a href="/top" title="Top 100">Top 100</a>
+			<br /><input type="search" class="inputbox" title="Pirate Search" name="q" placeholder="Search here..." value="fringe" /><input value="Pirate Search" type="submit" class="submitbutton" /><br />			<label for="audio" title="Audio"><input id="audio" name="audio" onclick="javascript:rmAll();" type="checkbox"/>Audio</label>
+			<label for="video" title="Video"><input id="video" name="video" onclick="javascript:rmAll();" type="checkbox"/>Video</label>
+			<label for="apps" title="Applications"><input id="apps" name="apps" onclick="javascript:rmAll();" type="checkbox"/>Applications</label>
+			<label for="games" title="Games"><input id="games" name="games" onclick="javascript:rmAll();" type="checkbox"/>Games</label>
+			<label for="other" title="Other"><input id="other" name="other" onclick="javascript:rmAll();" type="checkbox"/>Other</label>
+
+			<select id="category" name="category" onchange="javascript:setAll();">
+        	        	<option value="0">All</option>
+				<optgroup label="Audio">
+					<option value="101">Music</option>
+					<option value="102">Audio books</option>
+					<option value="103">Sound clips</option>
+					<option value="104">FLAC</option>
+					<option value="199">Other</option>
+				</optgroup>
+				<optgroup label="Video">
+					<option value="201">Movies</option>
+					<option value="202">Movies DVDR</option>
+					<option value="203">Music videos</option>
+					<option value="204">Movie clips</option>
+					<option value="205">TV shows</option>
+					<option value="206">Handheld</option>
+					<option value="207">Highres - Movies</option>
+					<option value="208">Highres - TV shows</option>
+					<option value="209">3D</option>
+					<option value="299">Other</option>
+				</optgroup>
+				<optgroup label="Applications">
+					<option value="301">Windows</option>
+					<option value="302">Mac</option>
+					<option value="303">UNIX</option>
+					<option value="304">Handheld</option>
+					<option value="305">IOS (iPad/iPhone)</option>
+					<option value="306">Android</option>
+					<option value="399">Other OS</option>
+				</optgroup>
+				<optgroup label="Games">
+					<option value="401">PC</option>
+					<option value="402">Mac</option>
+					<option value="403">PSx</option>
+					<option value="404">XBOX360</option>
+					<option value="405">Wii</option>
+					<option value="406">Handheld</option>
+					<option value="407">IOS (iPad/iPhone)</option>
+					<option value="408">Android</option>
+					<option value="499">Other</option>
+				</optgroup>
+				<optgroup label="Other">
+					<option value="601">E-books</option>
+					<option value="602">Comics</option>
+					<option value="603">Pictures</option>
+					<option value="604">Covers</option>
+					<option value="605">Physibles</option>
+					<option value="699">Other</option>
+				</optgroup>
+			</select>
+
+			<input type="hidden" name="page" value="0" />
+			<input type="hidden" name="orderby" value="99" />
+		</form>
+	</div><!-- // div:header -->
+
+	<h2><span>Search results: fringe</span>&nbsp;Displaying hits from 1 to 30 (approx 1000 found)</h2>
+<div id="SearchResults"><div id="content">
+			<div id="sky-right">
+				 <iframe src="http://cdn2.adexprt.com/clkads/sky2.html" width="160" height="600" frameborder="0" scrolling="no" style="padding-top: 100px"></iframe>
+			</div>
+	<div id="main-content">
+
+		 <iframe src="http://cdn2.adexprt.com/clkads/center.html" width="728" height="90" frameborder="0" scrolling="no"></iframe>
+	<table id="searchResult">
+	<thead id="tableHead">
+		<tr class="header">
+			<th><a href="/search/fringe/0/13/0" title="Order by Type">Type</a></th>
+			<th><div class="sortby"><a href="/search/fringe/0/1/0" title="Order by Name">Name</a> (Order by: <a href="/search/fringe/0/3/0" title="Order by Uploaded">Uploaded</a>, <a href="/search/fringe/0/5/0" title="Order by Size">Size</a>, <span style="white-space: nowrap;"><a href="/search/fringe/0/11/0" title="Order by ULed by">ULed by</a></span>, <a href="/search/fringe/0/7/0" title="Order by Seeders">SE</a>, <a href="/search/fringe/0/9/0" title="Order by Leechers">LE</a>)</div><div class="viewswitch"> View: <a href="/switchview.php?view=s">Single</a> / Double&nbsp;</div></th>
+			<th><abbr title="Seeders"><a href="/search/fringe/0/7/0" title="Order by Seeders">SE</a></abbr></th>
+			<th><abbr title="Leechers"><a href="/search/fringe/0/9/0" title="Order by Leechers">LE</a></abbr></th>
+		</tr>
+	</thead>
+	<tr>
+		<td class="vertTh">
+			<center>
+				<a href="/browse/200" title="More from this category">Video</a><br />
+				(<a href="/browse/205" title="More from this category">TV shows</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/7810640/Fringe_S05E06_Season_5_Episode_6_HDTV_x264_[GlowGaze]" class="detLink" title="Details for Fringe S05E06 Season 5 Episode 6 HDTV x264 [GlowGaze]">Fringe S05E06 Season 5 Episode 6 HDTV x264 [GlowGaze]</a>
+</div>
+<a href="magnet:?xt=urn:btih:0f4e3c1a4618b6d9658427e7778c602cd7c05ea0&dn=Fringe+S05E06+Season+5+Episode+6+HDTV+x264+%5BGlowGaze%5D&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.istole.it%3A6969&tr=udp%3A%2F%2Ftracker.ccc.de%3A80" title="Download this torrent using magnet"><img src="//static.thepiratebay.se/img/icon-magnet.gif" alt="Magnet link" /></a><img src="//static.thepiratebay.se/img/icon_comment.gif" alt="This torrent has 2 comments." title="This torrent has 2 comments." /><img src="//static.thepiratebay.se/img/icon_image.gif" alt="This torrent has a cover image" title="This torrent has a cover image" /><a href="/user/GlowGaze"><img src="//static.thepiratebay.se/img/trusted.png" alt="Trusted" title="Trusted" style="width:11px;" border='0' /></a>
+			<font class="detDesc">Uploaded Today&nbsp;04:11, Size 303.89&nbsp;MiB, ULed by <a class="detDesc" href="/user/GlowGaze/" title="Browse GlowGaze">GlowGaze</a></font>
+		</td>
+		<td align="right">413</td>
+		<td align="right">117</td>
+	</tr>
+	<tr>
+		<td class="vertTh">
+			<center>
+				<a href="/browse/200" title="More from this category">Video</a><br />
+				(<a href="/browse/208" title="More from this category">Highres - TV shows</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/7811310/Fringe_S05E06_720p_HDTV_x264-KarMa" class="detLink" title="Details for Fringe S05E06 720p HDTV x264-KarMa">Fringe S05E06 720p HDTV x264-KarMa</a>
+</div>
+<a href="magnet:?xt=urn:btih:11323c48884e696fdeb6e8d146a054095db24879&dn=Fringe+S05E06+720p+HDTV+x264-KarMa&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.istole.it%3A6969&tr=udp%3A%2F%2Ftracker.ccc.de%3A80" title="Download this torrent using magnet"><img src="//static.thepiratebay.se/img/icon-magnet.gif" alt="Magnet link" /></a><a href="/user/karmax264"><img src="//static.thepiratebay.se/img/trusted.png" alt="Trusted" title="Trusted" style="width:11px;" border='0' /></a><img src="//static.thepiratebay.se/img/11x11p.png" />
+			<font class="detDesc">Uploaded Today&nbsp;09:59, Size 713.81&nbsp;MiB, ULed by <a class="detDesc" href="/user/karmax264/" title="Browse karmax264">karmax264</a></font>
+		</td>
+		<td align="right">9</td>
+		<td align="right">123</td>
+	</tr>
+	<tr>
+		<td class="vertTh">
+			<center>
+				<a href="/browse/200" title="More from this category">Video</a><br />
+				(<a href="/browse/205" title="More from this category">TV shows</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/7810965/Fringe.S05E06.480p.HDTV.x264-SM" class="detLink" title="Details for Fringe.S05E06.480p.HDTV.x264-SM">Fringe.S05E06.480p.HDTV.x264-SM</a>
+</div>
+<a href="magnet:?xt=urn:btih:232661bb6c49707989faedb49290fd6f5e0c16e5&dn=Fringe.S05E06.480p.HDTV.x264-SM&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.istole.it%3A6969&tr=udp%3A%2F%2Ftracker.ccc.de%3A80" title="Download this torrent using magnet"><img src="//static.thepiratebay.se/img/icon-magnet.gif" alt="Magnet link" /></a><a href="/user/tonyisaac"><img src="//static.thepiratebay.se/img/vip.gif" alt="VIP" title="VIP" style="width:11px;" border='0' /></a><img src="//static.thepiratebay.se/img/11x11p.png" />
+			<font class="detDesc">Uploaded Today&nbsp;07:28, Size 194.36&nbsp;MiB, ULed by <a class="detDesc" href="/user/tonyisaac/" title="Browse tonyisaac">tonyisaac</a></font>
+		</td>
+		<td align="right">65</td>
+		<td align="right">51</td>
+	</tr>
+	<tr>
+		<td class="vertTh">
+			<center>
+				<a href="/browse/200" title="More from this category">Video</a><br />
+				(<a href="/browse/205" title="More from this category">TV shows</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/7810844/Fringe_S05E06_HDTV_x264-LOL_[eztv]" class="detLink" title="Details for Fringe S05E06 HDTV x264-LOL [eztv]">Fringe S05E06 HDTV x264-LOL [eztv]</a>
+</div>
+<a href="magnet:?xt=urn:btih:53786e4b499ca5d37886533fd8fbd6bbc64c5b78&dn=Fringe+S05E06+HDTV+x264-LOL+%5Beztv%5D&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.istole.it%3A6969&tr=udp%3A%2F%2Ftracker.ccc.de%3A80" title="Download this torrent using magnet"><img src="//static.thepiratebay.se/img/icon-magnet.gif" alt="Magnet link" /></a><a href="/user/eztv"><img src="//static.thepiratebay.se/img/vip.gif" alt="VIP" title="VIP" style="width:11px;" border='0' /></a><img src="//static.thepiratebay.se/img/11x11p.png" />
+			<font class="detDesc">Uploaded Today&nbsp;06:42, Size 303.89&nbsp;MiB, ULed by <a class="detDesc" href="/user/eztv/" title="Browse eztv">eztv</a></font>
+		</td>
+		<td align="right">18765</td>
+		<td align="right">15459</td>
+	</tr>
+	<tr>
+		<td class="vertTh">
+			<center>
+				<a href="/browse/200" title="More from this category">Video</a><br />
+				(<a href="/browse/205" title="More from this category">TV shows</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/7810843/Fringe_S05E06_HDTV_AC3_DivX-HQAVI" class="detLink" title="Details for Fringe S05E06 HDTV AC3 DivX-HQAVI">Fringe S05E06 HDTV AC3 DivX-HQAVI</a>
+</div>
+<a href="magnet:?xt=urn:btih:b38808f4765ab9294d69f7bbdd4699c2e25f0d6b&dn=Fringe+S05E06+HDTV+AC3+DivX-HQAVI&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.istole.it%3A6969&tr=udp%3A%2F%2Ftracker.ccc.de%3A80" title="Download this torrent using magnet"><img src="//static.thepiratebay.se/img/icon-magnet.gif" alt="Magnet link" /></a><a href="/user/teslaman"><img src="//static.thepiratebay.se/img/trusted.png" alt="Trusted" title="Trusted" style="width:11px;" border='0' /></a><img src="//static.thepiratebay.se/img/11x11p.png" />
+			<font class="detDesc">Uploaded Today&nbsp;06:42, Size 700.42&nbsp;MiB, ULed by <a class="detDesc" href="/user/teslaman/" title="Browse teslaman">teslaman</a></font>
+		</td>
+		<td align="right">68</td>
+		<td align="right">32</td>
+	</tr>
+	<tr>
+		<td class="vertTh">
+			<center>
+				<a href="/browse/200" title="More from this category">Video</a><br />
+				(<a href="/browse/205" title="More from this category">TV shows</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/7810709/Fringe.S05E06.HDTV.XviD-AFG" class="detLink" title="Details for Fringe.S05E06.HDTV.XviD-AFG">Fringe.S05E06.HDTV.XviD-AFG</a>
+</div>
+<a href="magnet:?xt=urn:btih:8978a8ee90a92983eec910c87e8f318298575ace&dn=Fringe.S05E06.HDTV.XviD-AFG&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.istole.it%3A6969&tr=udp%3A%2F%2Ftracker.ccc.de%3A80" title="Download this torrent using magnet"><img src="//static.thepiratebay.se/img/icon-magnet.gif" alt="Magnet link" /></a><a href="/user/TvTeam"><img src="//static.thepiratebay.se/img/vip.gif" alt="VIP" title="VIP" style="width:11px;" border='0' /></a><img src="//static.thepiratebay.se/img/11x11p.png" />
+			<font class="detDesc">Uploaded Today&nbsp;05:04, Size 339.64&nbsp;MiB, ULed by <a class="detDesc" href="/user/TvTeam/" title="Browse TvTeam">TvTeam</a></font>
+		</td>
+		<td align="right">458</td>
+		<td align="right">256</td>
+	</tr>
+	<tr>
+		<td class="vertTh">
+			<center>
+				<a href="/browse/200" title="More from this category">Video</a><br />
+				(<a href="/browse/205" title="More from this category">TV shows</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/7810706/Fringe.S05E06.480p.HDTV.x264-mSD" class="detLink" title="Details for Fringe.S05E06.480p.HDTV.x264-mSD">Fringe.S05E06.480p.HDTV.x264-mSD</a>
+</div>
+<a href="magnet:?xt=urn:btih:3a601784ee4e6f414be38c517733f78f3bfee60d&dn=Fringe.S05E06.480p.HDTV.x264-mSD&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.istole.it%3A6969&tr=udp%3A%2F%2Ftracker.ccc.de%3A80" title="Download this torrent using magnet"><img src="//static.thepiratebay.se/img/icon-magnet.gif" alt="Magnet link" /></a><a href="/user/TvTeam"><img src="//static.thepiratebay.se/img/vip.gif" alt="VIP" title="VIP" style="width:11px;" border='0' /></a><img src="//static.thepiratebay.se/img/11x11p.png" />
+			<font class="detDesc">Uploaded Today&nbsp;05:02, Size 197.49&nbsp;MiB, ULed by <a class="detDesc" href="/user/TvTeam/" title="Browse TvTeam">TvTeam</a></font>
+		</td>
+		<td align="right">139</td>
+		<td align="right">80</td>
+	</tr>
+	<tr>
+		<td class="vertTh">
+			<center>
+				<a href="/browse/200" title="More from this category">Video</a><br />
+				(<a href="/browse/205" title="More from this category">TV shows</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/7810698/Fringe.S05E06.HDTV.x264-LOL" class="detLink" title="Details for Fringe.S05E06.HDTV.x264-LOL">Fringe.S05E06.HDTV.x264-LOL</a>
+</div>
+<a href="magnet:?xt=urn:btih:4adf587b79e707901e886de5dae643717f9a47b7&dn=Fringe.S05E06.HDTV.x264-LOL&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.istole.it%3A6969&tr=udp%3A%2F%2Ftracker.ccc.de%3A80" title="Download this torrent using magnet"><img src="//static.thepiratebay.se/img/icon-magnet.gif" alt="Magnet link" /></a><a href="/user/TvTeam"><img src="//static.thepiratebay.se/img/vip.gif" alt="VIP" title="VIP" style="width:11px;" border='0' /></a><img src="//static.thepiratebay.se/img/11x11p.png" />
+			<font class="detDesc">Uploaded Today&nbsp;04:56, Size 303.89&nbsp;MiB, ULed by <a class="detDesc" href="/user/TvTeam/" title="Browse TvTeam">TvTeam</a></font>
+		</td>
+		<td align="right">162</td>
+		<td align="right">26</td>
+	</tr>
+	<tr>
+		<td class="vertTh">
+			<center>
+				<a href="/browse/200" title="More from this category">Video</a><br />
+				(<a href="/browse/205" title="More from this category">TV shows</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/7810697/Fringe_S05E06_HDTV_XviD-AFG[ettv]" class="detLink" title="Details for Fringe S05E06 HDTV XviD-AFG[ettv]">Fringe S05E06 HDTV XviD-AFG[ettv]</a>
+</div>
+<a href="magnet:?xt=urn:btih:f88bbd045f6833a70cf4b23a9a351ac1d8df740f&dn=Fringe+S05E06+HDTV+XviD-AFG%5Bettv%5D&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.istole.it%3A6969&tr=udp%3A%2F%2Ftracker.ccc.de%3A80" title="Download this torrent using magnet"><img src="//static.thepiratebay.se/img/icon-magnet.gif" alt="Magnet link" /></a><a href="/user/ettv"><img src="//static.thepiratebay.se/img/vip.gif" alt="VIP" title="VIP" style="width:11px;" border='0' /></a><img src="//static.thepiratebay.se/img/11x11p.png" />
+			<font class="detDesc">Uploaded Today&nbsp;04:55, Size 339.64&nbsp;MiB, ULed by <a class="detDesc" href="/user/ettv/" title="Browse ettv">ettv</a></font>
+		</td>
+		<td align="right">1629</td>
+		<td align="right">1816</td>
+	</tr>
+	<tr>
+		<td class="vertTh">
+			<center>
+				<a href="/browse/200" title="More from this category">Video</a><br />
+				(<a href="/browse/208" title="More from this category">Highres - TV shows</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/7810606/Fringe.S05E06.720p.HDTV.X264-DIMENSION_[PublicHD]" class="detLink" title="Details for Fringe.S05E06.720p.HDTV.X264-DIMENSION [PublicHD]">Fringe.S05E06.720p.HDTV.X264-DIMENSION [PublicHD]</a>
+</div>
+<a href="magnet:?xt=urn:btih:279e7457e845136b67658bbfaf2059beb91f3c2c&dn=Fringe.S05E06.720p.HDTV.X264-DIMENSION+%5BPublicHD%5D&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.istole.it%3A6969&tr=udp%3A%2F%2Ftracker.ccc.de%3A80" title="Download this torrent using magnet"><img src="//static.thepiratebay.se/img/icon-magnet.gif" alt="Magnet link" /></a><img src="//static.thepiratebay.se/img/icon_comment.gif" alt="This torrent has 1 comments." title="This torrent has 1 comments." /><a href="/user/DibyaTPB"><img src="//static.thepiratebay.se/img/vip.gif" alt="VIP" title="VIP" style="width:11px;" border='0' /></a>
+			<font class="detDesc">Uploaded Today&nbsp;04:05, Size 1.23&nbsp;GiB, ULed by <a class="detDesc" href="/user/DibyaTPB/" title="Browse DibyaTPB">DibyaTPB</a></font>
+		</td>
+		<td align="right">2407</td>
+		<td align="right">4690</td>
+	</tr>
+	<tr>
+		<td class="vertTh">
+			<center>
+				<a href="/browse/200" title="More from this category">Video</a><br />
+				(<a href="/browse/205" title="More from this category">TV shows</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/7810601/Fringe_S05E06_HDTV_x264-LOL[ettv]" class="detLink" title="Details for Fringe S05E06 HDTV x264-LOL[ettv]">Fringe S05E06 HDTV x264-LOL[ettv]</a>
+</div>
+<a href="magnet:?xt=urn:btih:6d91b4ec2b6ba337d707e36ad2f9ec54145a4440&dn=Fringe+S05E06+HDTV+x264-LOL%5Bettv%5D&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.istole.it%3A6969&tr=udp%3A%2F%2Ftracker.ccc.de%3A80" title="Download this torrent using magnet"><img src="//static.thepiratebay.se/img/icon-magnet.gif" alt="Magnet link" /></a><img src="//static.thepiratebay.se/img/icon_comment.gif" alt="This torrent has 4 comments." title="This torrent has 4 comments." /><a href="/user/ettv"><img src="//static.thepiratebay.se/img/vip.gif" alt="VIP" title="VIP" style="width:11px;" border='0' /></a>
+			<font class="detDesc">Uploaded Today&nbsp;04:05, Size 303.89&nbsp;MiB, ULed by <a class="detDesc" href="/user/ettv/" title="Browse ettv">ettv</a></font>
+		</td>
+		<td align="right">5231</td>
+		<td align="right">1625</td>
+	</tr>
+	<tr>
+		<td class="vertTh">
+			<center>
+				<a href="/browse/200" title="More from this category">Video</a><br />
+				(<a href="/browse/208" title="More from this category">Highres - TV shows</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/7791704/Fringe_S05E05_720p_Web-Dl_275mb_MrLss" class="detLink" title="Details for Fringe S05E05 720p Web-Dl 275mb MrLss">Fringe S05E05 720p Web-Dl 275mb MrLss</a>
+</div>
+<a href="magnet:?xt=urn:btih:05bdfca03e7ec02f8b51f5a5da5eede2637d5b74&dn=Fringe+S05E05+720p+Web-Dl+275mb+MrLss&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.istole.it%3A6969&tr=udp%3A%2F%2Ftracker.ccc.de%3A80" title="Download this torrent using magnet"><img src="//static.thepiratebay.se/img/icon-magnet.gif" alt="Magnet link" /></a><img src="//static.thepiratebay.se/img/11x11p.png" /><img src="//static.thepiratebay.se/img/11x11p.png" />
+			<font class="detDesc">Uploaded 11-04&nbsp;14:55, Size 276.05&nbsp;MiB, ULed by <a class="detDesc" href="/user/mf-den/" title="Browse mf-den">mf-den</a></font>
+		</td>
+		<td align="right">24</td>
+		<td align="right">3</td>
+	</tr>
+	<tr>
+		<td class="vertTh">
+			<center>
+				<a href="/browse/200" title="More from this category">Video</a><br />
+				(<a href="/browse/205" title="More from this category">TV shows</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/7796103/Fringe.S05E03.SweSub" class="detLink" title="Details for Fringe.S05E03.SweSub">Fringe.S05E03.SweSub</a>
+</div>
+<a href="magnet:?xt=urn:btih:a330fc7c014b7eba5bcad75b8156a78747d7755b&dn=Fringe.S05E03.SweSub&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.istole.it%3A6969&tr=udp%3A%2F%2Ftracker.ccc.de%3A80" title="Download this torrent using magnet"><img src="//static.thepiratebay.se/img/icon-magnet.gif" alt="Magnet link" /></a><img src="//static.thepiratebay.se/img/icon_comment.gif" alt="This torrent has 3 comments." title="This torrent has 3 comments." /><img src="//static.thepiratebay.se/img/11x11p.png" />
+			<font class="detDesc">Uploaded 11-05&nbsp;20:41, Size 501.42&nbsp;MiB, ULed by <a class="detDesc" href="/user/_skrackvarg_/" title="Browse _skrackvarg_">_skrackvarg_</a></font>
+		</td>
+		<td align="right">15</td>
+		<td align="right">2</td>
+	</tr>
+	<tr>
+		<td class="vertTh">
+			<center>
+				<a href="/browse/200" title="More from this category">Video</a><br />
+				(<a href="/browse/205" title="More from this category">TV shows</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/7790022/Fringe.S05E05.HDTV.Subtitulado.Esp.SC.avi" class="detLink" title="Details for Fringe.S05E05.HDTV.Subtitulado.Esp.SC.avi">Fringe.S05E05.HDTV.Subtitulado.Esp.SC.avi</a>
+</div>
+<a href="magnet:?xt=urn:btih:b28767391c2518ac61ee5a5215e2853cb4a7fab5&dn=Fringe.S05E05.HDTV.Subtitulado.Esp.SC.avi&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.istole.it%3A6969&tr=udp%3A%2F%2Ftracker.ccc.de%3A80" title="Download this torrent using magnet"><img src="//static.thepiratebay.se/img/icon-magnet.gif" alt="Magnet link" /></a><img src="//static.thepiratebay.se/img/icon_image.gif" alt="This torrent has a cover image" title="This torrent has a cover image" /><a href="/user/valentinmil"><img src="//static.thepiratebay.se/img/trusted.png" alt="Trusted" title="Trusted" style="width:11px;" border='0' /></a><img src="//static.thepiratebay.se/img/11x11p.png" />
+			<font class="detDesc">Uploaded 11-04&nbsp;02:48, Size 374.46&nbsp;MiB, ULed by <a class="detDesc" href="/user/valentinmil/" title="Browse valentinmil">valentinmil</a></font>
+		</td>
+		<td align="right">94</td>
+		<td align="right">3</td>
+	</tr>
+	<tr>
+		<td class="vertTh">
+			<center>
+				<a href="/browse/200" title="More from this category">Video</a><br />
+				(<a href="/browse/208" title="More from this category">Highres - TV shows</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/7789758/Fringe_S05E05_720p_WEB-DL_DD5.1_H264-EbP" class="detLink" title="Details for Fringe S05E05 720p WEB-DL DD5.1 H264-EbP">Fringe S05E05 720p WEB-DL DD5.1 H264-EbP</a>
+</div>
+<a href="magnet:?xt=urn:btih:0ca717ca18d8f1558250b2c526b196aa5f5b1da3&dn=Fringe+S05E05+720p+WEB-DL+DD5.1+H264-EbP&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.istole.it%3A6969&tr=udp%3A%2F%2Ftracker.ccc.de%3A80" title="Download this torrent using magnet"><img src="//static.thepiratebay.se/img/icon-magnet.gif" alt="Magnet link" /></a><img src="//static.thepiratebay.se/img/icon_comment.gif" alt="This torrent has 3 comments." title="This torrent has 3 comments." /><img src="//static.thepiratebay.se/img/11x11p.png" />
+			<font class="detDesc">Uploaded 11-04&nbsp;00:07, Size 1.35&nbsp;GiB, ULed by <a class="detDesc" href="/user/gagou777/" title="Browse gagou777">gagou777</a></font>
+		</td>
+		<td align="right">14</td>
+		<td align="right">6</td>
+	</tr>
+	<tr>
+		<td class="vertTh">
+			<center>
+				<a href="/browse/200" title="More from this category">Video</a><br />
+				(<a href="/browse/205" title="More from this category">TV shows</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/7788328/Fringe_S05E05_-_An_Origin_Story_(_Subs.Esp.Esp.)_C33" class="detLink" title="Details for Fringe S05E05 - An Origin Story (+Subs.Esp.Esp.) C33">Fringe S05E05 - An Origin Story (+Subs.Esp.Esp.) C33</a>
+</div>
+<a href="magnet:?xt=urn:btih:bb03d0e06d740095f2b189cca5765587a9599dd7&dn=Fringe+S05E05+-+An+Origin+Story+%28%2BSubs.Esp.Esp.%29+C33&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.istole.it%3A6969&tr=udp%3A%2F%2Ftracker.ccc.de%3A80" title="Download this torrent using magnet"><img src="//static.thepiratebay.se/img/icon-magnet.gif" alt="Magnet link" /></a><img src="//static.thepiratebay.se/img/11x11p.png" /><img src="//static.thepiratebay.se/img/11x11p.png" />
+			<font class="detDesc">Uploaded 11-03&nbsp;15:04, Size 705.89&nbsp;MiB, ULed by <a class="detDesc" href="/user/curalotodo33/" title="Browse curalotodo33">curalotodo33</a></font>
+		</td>
+		<td align="right">19</td>
+		<td align="right">1</td>
+	</tr>
+	<tr>
+		<td class="vertTh">
+			<center>
+				<a href="/browse/200" title="More from this category">Video</a><br />
+				(<a href="/browse/205" title="More from this category">TV shows</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/7798227/Fringe_S05E05_HDTV_NL_subs_DutchReleaseTeam" class="detLink" title="Details for Fringe S05E05 HDTV NL subs DutchReleaseTeam">Fringe S05E05 HDTV NL subs DutchReleaseTeam</a>
+</div>
+<a href="magnet:?xt=urn:btih:8334707a597714373c2e6ad2e320a42a4866e370&dn=Fringe+S05E05+HDTV+NL+subs+DutchReleaseTeam&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.istole.it%3A6969&tr=udp%3A%2F%2Ftracker.ccc.de%3A80" title="Download this torrent using magnet"><img src="//static.thepiratebay.se/img/icon-magnet.gif" alt="Magnet link" /></a><img src="//static.thepiratebay.se/img/icon_image.gif" alt="This torrent has a cover image" title="This torrent has a cover image" /><a href="/user/Ariclenes"><img src="//static.thepiratebay.se/img/vip.gif" alt="VIP" title="VIP" style="width:11px;" border='0' /></a><img src="//static.thepiratebay.se/img/11x11p.png" />
+			<font class="detDesc">Uploaded 11-06&nbsp;13:18, Size 347.2&nbsp;MiB, ULed by <a class="detDesc" href="/user/Ariclenes/" title="Browse Ariclenes">Ariclenes</a></font>
+		</td>
+		<td align="right">43</td>
+		<td align="right">7</td>
+	</tr>
+	<tr>
+		<td class="vertTh">
+			<center>
+				<a href="/browse/200" title="More from this category">Video</a><br />
+				(<a href="/browse/205" title="More from this category">TV shows</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/7791627/Fringe.S05E05.An.Origin.Story.(mp4sux_D).XVID-AVIGUY.avi" class="detLink" title="Details for Fringe.S05E05.An.Origin.Story.(mp4sux'D).XVID-AVIGUY.avi">Fringe.S05E05.An.Origin.Story.(mp4sux'D).XVID-AVIGUY.avi</a>
+</div>
+<a href="magnet:?xt=urn:btih:dc548df3cdd4fd01bf6f7b00b1928859601fe3e2&dn=Fringe.S05E05.An.Origin.Story.%28mp4sux%27D%29.XVID-AVIGUY.avi&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.istole.it%3A6969&tr=udp%3A%2F%2Ftracker.ccc.de%3A80" title="Download this torrent using magnet"><img src="//static.thepiratebay.se/img/icon-magnet.gif" alt="Magnet link" /></a>			<a href="//torrents.thepiratebay.se/7791627/Fringe.S05E05.An.Origin.Story.(mp4sux_D).XVID-AVIGUY.avi.7791627.TPB.torrent" title="Download this torrent"><img src="//static.thepiratebay.se/img/dl.gif" class="dl" alt="Download" /></a><img src="//static.thepiratebay.se/img/icon_comment.gif" alt="This torrent has 1 comments." title="This torrent has 1 comments." /><a href="/user/MP4SUX"><img src="//static.thepiratebay.se/img/trusted.png" alt="Trusted" title="Trusted" style="width:11px;" border='0' /></a>
+			<font class="detDesc">Uploaded 11-04&nbsp;14:39, Size 291.34&nbsp;MiB, ULed by <a class="detDesc" href="/user/MP4SUX/" title="Browse MP4SUX">MP4SUX</a></font>
+		</td>
+		<td align="right">7</td>
+		<td align="right">2</td>
+	</tr>
+	<tr>
+		<td class="vertTh">
+			<center>
+				<a href="/browse/200" title="More from this category">Video</a><br />
+				(<a href="/browse/205" title="More from this category">TV shows</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/7791233/Fringe.S05E05.VOSTFR.Gillop.avi" class="detLink" title="Details for Fringe.S05E05.VOSTFR.Gillop.avi">Fringe.S05E05.VOSTFR.Gillop.avi</a>
+</div>
+<a href="magnet:?xt=urn:btih:7192215ca93426c59413b0c9db6a4d164ffcf210&dn=Fringe.S05E05.VOSTFR.Gillop.avi&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.istole.it%3A6969&tr=udp%3A%2F%2Ftracker.ccc.de%3A80" title="Download this torrent using magnet"><img src="//static.thepiratebay.se/img/icon-magnet.gif" alt="Magnet link" /></a><a href="/user/gillop1"><img src="//static.thepiratebay.se/img/trusted.png" alt="Trusted" title="Trusted" style="width:11px;" border='0' /></a><img src="//static.thepiratebay.se/img/11x11p.png" />
+			<font class="detDesc">Uploaded 11-04&nbsp;11:29, Size 321.6&nbsp;MiB, ULed by <a class="detDesc" href="/user/gillop1/" title="Browse gillop1">gillop1</a></font>
+		</td>
+		<td align="right">18</td>
+		<td align="right">6</td>
+	</tr>
+	<tr>
+		<td class="vertTh">
+			<center>
+				<a href="/browse/200" title="More from this category">Video</a><br />
+				(<a href="/browse/208" title="More from this category">Highres - TV shows</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/7790578/Fringe_S05E05_720p_WEB-DL_DD5.1_H264-EbP" class="detLink" title="Details for Fringe S05E05 720p WEB-DL DD5.1 H264-EbP">Fringe S05E05 720p WEB-DL DD5.1 H264-EbP</a>
+</div>
+<a href="magnet:?xt=urn:btih:24792a74a3a7cb121362c10f8b6b12ca022ed6d8&dn=Fringe+S05E05+720p+WEB-DL+DD5.1+H264-EbP&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.istole.it%3A6969&tr=udp%3A%2F%2Ftracker.ccc.de%3A80" title="Download this torrent using magnet"><img src="//static.thepiratebay.se/img/icon-magnet.gif" alt="Magnet link" /></a>			<a href="//torrents.thepiratebay.se/7790578/Fringe_S05E05_720p_WEB-DL_DD5.1_H264-EbP.7790578.TPB.torrent" title="Download this torrent"><img src="//static.thepiratebay.se/img/dl.gif" class="dl" alt="Download" /></a><a href="/user/sceneline"><img src="//static.thepiratebay.se/img/vip.gif" alt="VIP" title="VIP" style="width:11px;" border='0' /></a><img src="//static.thepiratebay.se/img/11x11p.png" />
+			<font class="detDesc">Uploaded 11-04&nbsp;08:09, Size 1.35&nbsp;GiB, ULed by <a class="detDesc" href="/user/sceneline/" title="Browse sceneline">sceneline</a></font>
+		</td>
+		<td align="right">8</td>
+		<td align="right">2</td>
+	</tr>
+	<tr>
+		<td class="vertTh">
+			<center>
+				<a href="/browse/200" title="More from this category">Video</a><br />
+				(<a href="/browse/208" title="More from this category">Highres - TV shows</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/7790394/Fringe.S05E05.1080p.WEB-DL.DD5.1.H.264_[PublicHD]" class="detLink" title="Details for Fringe.S05E05.1080p.WEB-DL.DD5.1.H.264 [PublicHD]">Fringe.S05E05.1080p.WEB-DL.DD5.1.H.264 [PublicHD]</a>
+</div>
+<a href="magnet:?xt=urn:btih:ce92651d8b6e0fa688d44aba2736c794d66d4448&dn=Fringe.S05E05.1080p.WEB-DL.DD5.1.H.264+%5BPublicHD%5D&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.istole.it%3A6969&tr=udp%3A%2F%2Ftracker.ccc.de%3A80" title="Download this torrent using magnet"><img src="//static.thepiratebay.se/img/icon-magnet.gif" alt="Magnet link" /></a><img src="//static.thepiratebay.se/img/icon_comment.gif" alt="This torrent has 3 comments." title="This torrent has 3 comments." /><a href="/user/DibyaTPB"><img src="//static.thepiratebay.se/img/vip.gif" alt="VIP" title="VIP" style="width:11px;" border='0' /></a>
+			<font class="detDesc">Uploaded 11-04&nbsp;06:11, Size 1.7&nbsp;GiB, ULed by <a class="detDesc" href="/user/DibyaTPB/" title="Browse DibyaTPB">DibyaTPB</a></font>
+		</td>
+		<td align="right">54</td>
+		<td align="right">11</td>
+	</tr>
+	<tr>
+		<td class="vertTh">
+			<center>
+				<a href="/browse/200" title="More from this category">Video</a><br />
+				(<a href="/browse/208" title="More from this category">Highres - TV shows</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/7790393/Fringe_S05E05_720p_WEB-DL_DD5.1_H264-EbP_[PublicHD]" class="detLink" title="Details for Fringe S05E05 720p WEB-DL DD5.1 H264-EbP [PublicHD]">Fringe S05E05 720p WEB-DL DD5.1 H264-EbP [PublicHD]</a>
+</div>
+<a href="magnet:?xt=urn:btih:3f1ab247dc4cf24e17debcdacdb238d542bfa6eb&dn=Fringe+S05E05+720p+WEB-DL+DD5.1+H264-EbP+%5BPublicHD%5D&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.istole.it%3A6969&tr=udp%3A%2F%2Ftracker.ccc.de%3A80" title="Download this torrent using magnet"><img src="//static.thepiratebay.se/img/icon-magnet.gif" alt="Magnet link" /></a><a href="/user/DibyaTPB"><img src="//static.thepiratebay.se/img/vip.gif" alt="VIP" title="VIP" style="width:11px;" border='0' /></a><img src="//static.thepiratebay.se/img/11x11p.png" />
+			<font class="detDesc">Uploaded 11-04&nbsp;06:11, Size 1.35&nbsp;GiB, ULed by <a class="detDesc" href="/user/DibyaTPB/" title="Browse DibyaTPB">DibyaTPB</a></font>
+		</td>
+		<td align="right">73</td>
+		<td align="right">21</td>
+	</tr>
+	<tr>
+		<td class="vertTh">
+			<center>
+				<a href="/browse/200" title="More from this category">Video</a><br />
+				(<a href="/browse/205" title="More from this category">TV shows</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/7789717/Fringe.S05E05.480p.HDTV.x264-mSD" class="detLink" title="Details for Fringe.S05E05.480p.HDTV.x264-mSD">Fringe.S05E05.480p.HDTV.x264-mSD</a>
+</div>
+<a href="magnet:?xt=urn:btih:0e6273183b0108ccf028368731b7e7a5370833ca&dn=Fringe.S05E05.480p.HDTV.x264-mSD&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.istole.it%3A6969&tr=udp%3A%2F%2Ftracker.ccc.de%3A80" title="Download this torrent using magnet"><img src="//static.thepiratebay.se/img/icon-magnet.gif" alt="Magnet link" /></a><img src="//static.thepiratebay.se/img/icon_comment.gif" alt="This torrent has 1 comments." title="This torrent has 1 comments." /><a href="/user/TvTeam"><img src="//static.thepiratebay.se/img/vip.gif" alt="VIP" title="VIP" style="width:11px;" border='0' /></a>
+			<font class="detDesc">Uploaded 11-03&nbsp;23:51, Size 197.81&nbsp;MiB, ULed by <a class="detDesc" href="/user/TvTeam/" title="Browse TvTeam">TvTeam</a></font>
+		</td>
+		<td align="right">16</td>
+		<td align="right">3</td>
+	</tr>
+	<tr>
+		<td class="vertTh">
+			<center>
+				<a href="/browse/200" title="More from this category">Video</a><br />
+				(<a href="/browse/205" title="More from this category">TV shows</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/7789326/Fringe.S05E05.480p.WEB-DL.x264-mSD" class="detLink" title="Details for Fringe.S05E05.480p.WEB-DL.x264-mSD">Fringe.S05E05.480p.WEB-DL.x264-mSD</a>
+</div>
+<a href="magnet:?xt=urn:btih:cab8278390bdccd766087f7231d064113e324aeb&dn=Fringe.S05E05.480p.WEB-DL.x264-mSD&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.istole.it%3A6969&tr=udp%3A%2F%2Ftracker.ccc.de%3A80" title="Download this torrent using magnet"><img src="//static.thepiratebay.se/img/icon-magnet.gif" alt="Magnet link" /></a>			<a href="//torrents.thepiratebay.se/7789326/Fringe.S05E05.480p.WEB-DL.x264-mSD.7789326.TPB.torrent" title="Download this torrent"><img src="//static.thepiratebay.se/img/dl.gif" class="dl" alt="Download" /></a><a href="/user/scenebalance"><img src="//static.thepiratebay.se/img/vip.gif" alt="VIP" title="VIP" style="width:11px;" border='0' /></a><img src="//static.thepiratebay.se/img/11x11p.png" />
+			<font class="detDesc">Uploaded 11-03&nbsp;20:46, Size 246.68&nbsp;MiB, ULed by <a class="detDesc" href="/user/scenebalance/" title="Browse scenebalance">scenebalance</a></font>
+		</td>
+		<td align="right">2</td>
+		<td align="right">0</td>
+	</tr>
+	<tr>
+		<td class="vertTh">
+			<center>
+				<a href="/browse/200" title="More from this category">Video</a><br />
+				(<a href="/browse/205" title="More from this category">TV shows</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/7789316/Fringe.S05E05.480p.WEB-DL.x264-mSD" class="detLink" title="Details for Fringe.S05E05.480p.WEB-DL.x264-mSD">Fringe.S05E05.480p.WEB-DL.x264-mSD</a>
+</div>
+<a href="magnet:?xt=urn:btih:5eb28d99dd730a3245d039c0b3bcbf695198ec06&dn=Fringe.S05E05.480p.WEB-DL.x264-mSD&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.istole.it%3A6969&tr=udp%3A%2F%2Ftracker.ccc.de%3A80" title="Download this torrent using magnet"><img src="//static.thepiratebay.se/img/icon-magnet.gif" alt="Magnet link" /></a>			<a href="//torrents.thepiratebay.se/7789316/Fringe.S05E05.480p.WEB-DL.x264-mSD.7789316.TPB.torrent" title="Download this torrent"><img src="//static.thepiratebay.se/img/dl.gif" class="dl" alt="Download" /></a><a href="/user/TvTeam"><img src="//static.thepiratebay.se/img/vip.gif" alt="VIP" title="VIP" style="width:11px;" border='0' /></a><img src="//static.thepiratebay.se/img/11x11p.png" />
+			<font class="detDesc">Uploaded 11-03&nbsp;20:42, Size 246.69&nbsp;MiB, ULed by <a class="detDesc" href="/user/TvTeam/" title="Browse TvTeam">TvTeam</a></font>
+		</td>
+		<td align="right">6</td>
+		<td align="right">1</td>
+	</tr>
+	<tr>
+		<td class="vertTh">
+			<center>
+				<a href="/browse/200" title="More from this category">Video</a><br />
+				(<a href="/browse/205" title="More from this category">TV shows</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/7788054/Fringe.S05E05.480p.HDTV.x264-mSD" class="detLink" title="Details for Fringe.S05E05.480p.HDTV.x264-mSD">Fringe.S05E05.480p.HDTV.x264-mSD</a>
+</div>
+<a href="magnet:?xt=urn:btih:cc9820eb31b5e3db9bbf4a68a75e19a9262f9755&dn=Fringe.S05E05.480p.HDTV.x264-mSD&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.istole.it%3A6969&tr=udp%3A%2F%2Ftracker.ccc.de%3A80" title="Download this torrent using magnet"><img src="//static.thepiratebay.se/img/icon-magnet.gif" alt="Magnet link" /></a>			<a href="//torrents.thepiratebay.se/7788054/Fringe.S05E05.480p.HDTV.x264-mSD.7788054.TPB.torrent" title="Download this torrent"><img src="//static.thepiratebay.se/img/dl.gif" class="dl" alt="Download" /></a><a href="/user/scenebalance"><img src="//static.thepiratebay.se/img/vip.gif" alt="VIP" title="VIP" style="width:11px;" border='0' /></a><img src="//static.thepiratebay.se/img/11x11p.png" />
+			<font class="detDesc">Uploaded 11-03&nbsp;13:49, Size 197.81&nbsp;MiB, ULed by <a class="detDesc" href="/user/scenebalance/" title="Browse scenebalance">scenebalance</a></font>
+		</td>
+		<td align="right">4</td>
+		<td align="right">2</td>
+	</tr>
+	<tr>
+		<td class="vertTh">
+			<center>
+				<a href="/browse/200" title="More from this category">Video</a><br />
+				(<a href="/browse/205" title="More from this category">TV shows</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/7786779/Fringe_S05E05_Season_5_Episode_5_HDTV_x264_[GlowGaze]" class="detLink" title="Details for Fringe S05E05 Season 5 Episode 5 HDTV x264 [GlowGaze]">Fringe S05E05 Season 5 Episode 5 HDTV x264 [GlowGaze]</a>
+</div>
+<a href="magnet:?xt=urn:btih:6c1590362253951114d10bd8db80530ed33e4f3a&dn=Fringe+S05E05+Season+5+Episode+5+HDTV+x264+%5BGlowGaze%5D&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.istole.it%3A6969&tr=udp%3A%2F%2Ftracker.ccc.de%3A80" title="Download this torrent using magnet"><img src="//static.thepiratebay.se/img/icon-magnet.gif" alt="Magnet link" /></a><img src="//static.thepiratebay.se/img/icon_comment.gif" alt="This torrent has 3 comments." title="This torrent has 3 comments." /><img src="//static.thepiratebay.se/img/icon_image.gif" alt="This torrent has a cover image" title="This torrent has a cover image" /><a href="/user/GlowGaze"><img src="//static.thepiratebay.se/img/trusted.png" alt="Trusted" title="Trusted" style="width:11px;" border='0' /></a>
+			<font class="detDesc">Uploaded 11-03&nbsp;03:12, Size 282.99&nbsp;MiB, ULed by <a class="detDesc" href="/user/GlowGaze/" title="Browse GlowGaze">GlowGaze</a></font>
+		</td>
+		<td align="right">360</td>
+		<td align="right">26</td>
+	</tr>
+	<tr>
+		<td class="vertTh">
+			<center>
+				<a href="/browse/200" title="More from this category">Video</a><br />
+				(<a href="/browse/205" title="More from this category">TV shows</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/7763812/Fringe_S05E04_Season_5_Episode_4_HDTV_x264___Subtitles_[GlowGaze" class="detLink" title="Details for Fringe S05E04 Season 5 Episode 4 HDTV x264 + Subtitles [GlowGaze">Fringe S05E04 Season 5 Episode 4 HDTV x264 + Subtitles [GlowGaze</a>
+</div>
+<a href="magnet:?xt=urn:btih:16283d606e4477872434204b87b56b94a184a25a&dn=Fringe+S05E04+Season+5+Episode+4+HDTV+x264+%2B+Subtitles+%5BGlowGaze&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.istole.it%3A6969&tr=udp%3A%2F%2Ftracker.ccc.de%3A80" title="Download this torrent using magnet"><img src="//static.thepiratebay.se/img/icon-magnet.gif" alt="Magnet link" /></a><img src="//static.thepiratebay.se/img/icon_comment.gif" alt="This torrent has 4 comments." title="This torrent has 4 comments." /><a href="/user/GlowGaze"><img src="//static.thepiratebay.se/img/trusted.png" alt="Trusted" title="Trusted" style="width:11px;" border='0' /></a>
+			<font class="detDesc">Uploaded 10-27&nbsp;04:25, Size 277.35&nbsp;MiB, ULed by <a class="detDesc" href="/user/GlowGaze/" title="Browse GlowGaze">GlowGaze</a></font>
+		</td>
+		<td align="right">247</td>
+		<td align="right">18</td>
+	</tr>
+	<tr>
+		<td class="vertTh">
+			<center>
+				<a href="/browse/200" title="More from this category">Video</a><br />
+				(<a href="/browse/205" title="More from this category">TV shows</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/7723709/Fringe_S05E03_Season_5_Episode_3_HDTV_x264___Subtitles_[GlowGaze" class="detLink" title="Details for Fringe S05E03 Season 5 Episode 3 HDTV x264 + Subtitles [GlowGaze">Fringe S05E03 Season 5 Episode 3 HDTV x264 + Subtitles [GlowGaze</a>
+</div>
+<a href="magnet:?xt=urn:btih:4d8ce27efe95e2a61040f47ef4a63f1e2353e941&dn=Fringe+S05E03+Season+5+Episode+3+HDTV+x264+%2B+Subtitles+%5BGlowGaze&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.istole.it%3A6969&tr=udp%3A%2F%2Ftracker.ccc.de%3A80" title="Download this torrent using magnet"><img src="//static.thepiratebay.se/img/icon-magnet.gif" alt="Magnet link" /></a><img src="//static.thepiratebay.se/img/icon_comment.gif" alt="This torrent has 3 comments." title="This torrent has 3 comments." /><img src="//static.thepiratebay.se/img/icon_image.gif" alt="This torrent has a cover image" title="This torrent has a cover image" /><a href="/user/GlowGaze"><img src="//static.thepiratebay.se/img/trusted.png" alt="Trusted" title="Trusted" style="width:11px;" border='0' /></a>
+			<font class="detDesc">Uploaded 10-13&nbsp;17:15, Size 288.91&nbsp;MiB, ULed by <a class="detDesc" href="/user/GlowGaze/" title="Browse GlowGaze">GlowGaze</a></font>
+		</td>
+		<td align="right">225</td>
+		<td align="right">15</td>
+	</tr>
+	<tr>
+		<td class="vertTh">
+			<center>
+				<a href="/browse/200" title="More from this category">Video</a><br />
+				(<a href="/browse/205" title="More from this category">TV shows</a>)
+			</center>
+		</td>
+		<td>
+<div class="detName">			<a href="/torrent/7787237/Fringe_S05E05_480p_HDTV_150mb_MrLss" class="detLink" title="Details for Fringe S05E05 480p HDTV 150mb MrLss">Fringe S05E05 480p HDTV 150mb MrLss</a>
+</div>
+<a href="magnet:?xt=urn:btih:56e080b8bdd2bc96060a9f77b1165f32f19ddd74&dn=Fringe+S05E05+480p+HDTV+150mb+MrLss&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.istole.it%3A6969&tr=udp%3A%2F%2Ftracker.ccc.de%3A80" title="Download this torrent using magnet"><img src="//static.thepiratebay.se/img/icon-magnet.gif" alt="Magnet link" /></a><img src="//static.thepiratebay.se/img/11x11p.png" /><img src="//static.thepiratebay.se/img/11x11p.png" />
+			<font class="detDesc">Uploaded 11-03&nbsp;08:23, Size 150.86&nbsp;MiB, ULed by <a class="detDesc" href="/user/mf-den/" title="Browse mf-den">mf-den</a></font>
+		</td>
+		<td align="right">18</td>
+		<td align="right">4</td>
+	</tr>
+
+</table>
+</div>
+<div align="center">1&nbsp;<a href="/search/fringe/1/99/0/">2</a>&nbsp;<a href="/search/fringe/2/99/0/">3</a>&nbsp;<a href="/search/fringe/3/99/0/">4</a>&nbsp;<a href="/search/fringe/4/99/0/">5</a>&nbsp;<a href="/search/fringe/5/99/0/">6</a>&nbsp;<a href="/search/fringe/6/99/0/">7</a>&nbsp;<a href="/search/fringe/7/99/0/">8</a>&nbsp;<a href="/search/fringe/8/99/0/">9</a>&nbsp;<a href="/search/fringe/9/99/0/">10</a>&nbsp;<a href="/search/fringe/10/99/0/">11</a>&nbsp;<a href="/search/fringe/11/99/0/">12</a>&nbsp;<a href="/search/fringe/12/99/0/">13</a>&nbsp;<a href="/search/fringe/13/99/0/">14</a>&nbsp;<a href="/search/fringe/14/99/0/">15</a>&nbsp;<a href="/search/fringe/15/99/0/">16</a>&nbsp;<a href="/search/fringe/16/99/0/">17</a>&nbsp;<a href="/search/fringe/17/99/0/">18</a>&nbsp;<a href="/search/fringe/18/99/0/">19</a>&nbsp;<a href="/search/fringe/19/99/0/">20</a>&nbsp;<a href="/search/fringe/20/99/0/">21</a>&nbsp;<a href="/search/fringe/21/99/0/">22</a>&nbsp;<a href="/search/fringe/22/99/0/">23</a>&nbsp;<a href="/search/fringe/23/99/0/">24</a>&nbsp;<a href="/search/fringe/24/99/0/">25</a>&nbsp;<a href="/search/fringe/25/99/0/">26</a>&nbsp;<a href="/search/fringe/26/99/0/">27</a>&nbsp;<a href="/search/fringe/27/99/0/">28</a>&nbsp;<a href="/search/fringe/28/99/0/">29</a>&nbsp;<a href="/search/fringe/29/99/0/">30</a>&nbsp;<a href="/search/fringe/30/99/0/">31</a>&nbsp;<a href="/search/fringe/31/99/0/">32</a>&nbsp;<a href="/search/fringe/32/99/0/">33</a>&nbsp;<a href="/search/fringe/33/99/0/">34</a>&nbsp;<a href="/search/fringe/1/99/0/"><img src="//static.thepiratebay.se/img/next.gif" border="0" alt="Next"/></a>&nbsp;
+</div>
+			<div class="ads" id="sky-banner">
+				 <iframe src="http://cdn2.adexprt.com/clkads/sky1.html" width="120" height="600" frameborder="0" scrolling="no"></iframe>
+			</div>
+	</div></div></div><!-- //div:content -->
+
+	<div id="foot" style="text-align:center;margin-top:1em;">
+
+			 <iframe src="http://cdn1.adexprt.com/clkads/bottom.html" width="728" height="90" frameborder="0" scrolling="no"></iframe>
+				<p>
+			<a href="/login" title="Login">Login</a> | 
+			<a href="/register" title="Register">Register</a> | 
+			<a href="/language" title="Select language">Language / Select language</a> |
+			<a href="/about" title="About">About</a> |
+			<a href="/legal" title="Legal threats">Legal threats</a> |
+			<a href="/blog" title="Blog">Blog</a>
+			<br />
+			<a href="/contact" title="Contact us">Contact us</a> |
+			<a href="/policy" title="Usage policy">Usage policy</a> |
+			<a href="/downloads" title="Downloads">Downloads</a> |
+			<a href="/promo" title="Promo">Promo</a> |
+			<a href="/doodles" title="Doodles">Doodles</a> |
+			<a href="/searchcloud" title="Search Cloud">Search Cloud</a> |
+			<a href="/tags" title="Tag Cloud">Tag Cloud</a> |
+			<a href="http://suprbay.org/" title="Forum" target="_blank">Forum</a> |
+			<b><a href="http://www.bytelove.com" title="TPB T-shirts" target="_blank">TPB T-shirts</a></b>
+			<br />
+			<b><a href="http://bayfiles.com" title="Bayfiles" target="_blank">Bayfiles</a></b> |
+			<a href="http://bayimg.com" title="BayImg" target="_blank">BayImg</a> |
+			<a href="http://www.pastebay.net" title="PasteBay" target="_blank">PasteBay</a> |
+			<!-- <a href="http://www.pirateshops.com" title="Pirate Shops" target="_blank">Pirate Shops</a> | -->
+			<a href="https://twitter.com/tpbdotorg" title="Twitter" target="_blank">Follow TPB on Twitter</a> |
+			<a href="https://www.facebook.com/ThePirateBayWarMachine" title="Facebook" target="_blank">Follow TPB on Facebook</a>
+			<br />
+		</p>
+
+<p id="footer" style="color:#666; font-size:0.9em; ">
+        5.967.416 registered users. Last updated 06:32:06.<br />
+        30.848.650 peers (23.712.861 seeders + 7.135.789 leechers) in 3.810.462 torrents.<br />
+</p>
+
+
+		<div id="fbanners">
+			<a href="/rss" class="rss" title="RSS"><img src="//static.thepiratebay.se/img/rss_small.gif" alt="RSS" /></a>
+		</div><!-- // div:fbanners -->
+	</div><!-- // div:foot -->
+
+			<script type="text/javascript" src="http://cdn2.adexprt.com/clkads/pop.js"></script>
+		<!-- abc: MX 0 -->
+</body>
+</html>
