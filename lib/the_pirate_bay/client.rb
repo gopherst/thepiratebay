@@ -1,4 +1,5 @@
 require "the_pirate_bay/torrent"
+require "the_pirate_bay/torrent/collection"
 
 module ThePirateBay
   class Client < API

@@ -10,8 +10,8 @@ describe ThePirateBay::Torrent do
       torrents.class.should == Array
     end
     
-    it "instantiates torrents objects" do
-      torrents.first.class.should == ThePirateBay::Torrent
+    it "instantiates torrents collection objects" do
+      torrents.first.class.should == ThePirateBay::Torrent::Collection
     end
     
     it "assigns torrents attributes" do
