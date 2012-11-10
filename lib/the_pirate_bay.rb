@@ -1,3 +1,4 @@
+require "the_pirate_bay/errors"
 require "the_pirate_bay/version"
 require "the_pirate_bay/api"
 require "the_pirate_bay/model"

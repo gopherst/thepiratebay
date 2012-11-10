@@ -11,7 +11,7 @@ module ThePirateBay
     def attributes=(params=nil)
       params.each do |attr, value|
         begin
-          self.public_send("#{klass::ATTRS_MAP.key(attr)}=", value)
+          self.public_send("#{attr}=", value)
         rescue NoMethodError
           raise UnknownAttributeError, "unknown attribute: #{attr}"
         end
@@ -20,7 +20,7 @@ module ThePirateBay
     
     def attributes
       attrs = {}
-      klass::ATTRS_MAP.keys.each do |name|
+      class_attributes.each do |name|
         attrs[name] = send(name)
       end
       attrs
@@ -28,7 +28,7 @@ module ThePirateBay
     
     def inspect
       inspection = unless id.nil?
-        klass::ATTRS_MAP.keys.collect { |name|
+        class_attributes.collect { |name|
           "#{name}: #{attribute_for_inspect(name)}"
         }.compact.join(", ")
        else
@@ -47,6 +47,10 @@ module ThePirateBay
       else
         value.inspect
       end
+    end
+    
+    def class_attributes
+      klass::ATTRS
     end
     
   end # Model

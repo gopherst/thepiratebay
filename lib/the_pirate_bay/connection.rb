@@ -1,4 +1,6 @@
 require "faraday"
+require "the_pirate_bay/response"
+require "the_pirate_bay/response/htmlize"
 
 module ThePirateBay
   module Connection
@@ -10,6 +12,7 @@ module ThePirateBay
       @connection ||= Faraday.new(:url => ThePirateBay::ENDPOINT) do |faraday|
         faraday.response :logger if ENV['DEBUG'] # log requests to STDOUT
         faraday.adapter  :net_http # make requests with NetHTTP
+        faraday.use      ThePirateBay::Response::Htmlize
       end
     end
     

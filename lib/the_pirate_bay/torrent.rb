@@ -9,7 +9,24 @@ module ThePirateBay
 
     class << self
       def search(query)
-        data = request("search/#{query}/0/99/0")
+        # Returns search html
+        doc = request("search/#{query}/0/99/0")
+
+        # Get torrents table rows 
+        # and return as ruby objects
+        doc.xpath("//table[@id='searchResult']/tr").collect do |torrent|
+          new ({
+            id:   torrent.css('td[2] div.detName').inner_html.match(/\/torrent\/(\d+)\//)[1],
+            name: torrent.css('td[2] div.detName a').text,
+            type: torrent.css('td[1] a').map(&:text).join(" > "),
+            size: torrent.css('td[2] font.detDesc').text.match(/Size (.*),/)[1].gsub('i', ''),
+            seeders:  torrent.css('td[3]').text,
+            leechers: torrent.css('td[4]').text,
+            uploader: torrent.css('td[2] font.detDesc a').text,
+            magnet_uri: torrent.css('td[2] div.detName + a').attribute("href").value,
+            comments_count: (torrent.css('td[2] img[@src*="comment.gif"]').attribute("alt").value.match(/\d+/)[0] rescue nil)
+          })
+        end
       end
       
       def find(id)
@@ -17,6 +34,6 @@ module ThePirateBay
       end
       alias :get :find
     end
-            
+    
   end # Torrent
 end # ThePirateBay
