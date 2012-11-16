@@ -20,6 +20,6 @@ Gem::Specification.new do |gem|
   gem.add_dependency "faraday",  "~> 0.8.4"
   gem.add_dependency "nokogiri", "~> 1.5.5"
   
-  gem.add_development_dependency "rspec", "~> 2.11.0"
+  gem.add_development_dependency "rspec", "~> 2.12.0"
   gem.add_development_dependency "webmock", "~> 1.9.0"
 end
