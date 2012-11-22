@@ -22,16 +22,16 @@ require "the_pirate_bay"
 api = ThePirateBay.new
 
 # You can search for a torrent by keyword
-api.series.search("Fringe")
-=> [#<ThePirateBay::Torrent::Collection id: "7810640", name: "Fringe S05E06 Season 5 Episode 6 HDTV x264 [GlowGaz...", seeders: "408", leechers: "116", magnet_uri: "magnet:?xt=urn:btih:0f4e3c1a4618b6d9658427e7778c602...", size: "303.89 MB", type: "Video > TV shows", uploaded_at: "Today 04:11, Size 303.89 MiB", comments_count: "2", uploader: "GlowGaze">]
+api.torrents.search("Fringe")
+=> [#<ThePirateBay::Torrent::Collection id: "7810640", name: "Fringe S05E06 Season 5 Episode 6 HDTV x264 [GlowGaz...", seeders: "408", leechers: "116", magnet_uri: "magnet:?xt=urn:btih:0f4e3c1a4618b6d9658427e7778c602...", size: "303.89 MB", type: "Video > TV shows", uploaded_at: "Today 04:11", comments_count: "2", uploader: "GlowGaze">]
 
-# Once you have a torrent id, you can use it to find more information
+# If you have a torrent id, you can use it to find more information
 torrent = api.torrents.find("7810640")
+=> #<ThePirateBay::Torrent id: "7723168", name: "Fringe S05E03 HDTV x264-LOL [eztv]", description: "#EZTV @ EFNet -&gt; To avoid fakes, ALWAYS check th...", seeders: "2461", leechers: "118", quality: "+4 / -0 (+4)", size: "288.87 MiB (302897843 Bytes)", type: "Video > TV shows", hash: "84C153E4064D1AC1CC151A09070C8740C318D271", uploaded_at: "2012-10-13 12:33:16 GMT", uploaded_by: "eztv", comments_count: "6", files_count: "1", spoken_language: nil, written_language: nil, tags: nil, imdb_id: nil>
 ```
 
 ## Work in Progress
 
-* Find torrents by id
 * Handle users
 * Sort results by relevance, seeders, leechers, size, date, user and type
 * Get results from other pages

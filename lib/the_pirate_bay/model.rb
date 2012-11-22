@@ -1,23 +1,6 @@
 module ThePirateBay
   module Model
     
-    attr_accessor :klass
-    
-    def initialize(params=nil)
-      @klass = self.class
-      self.attributes = params
-    end
-    
-    def attributes=(params=nil)
-      params.each do |attr, value|
-        begin
-          self.public_send("#{attr}=", value)
-        rescue NoMethodError
-          raise UnknownAttributeError, "unknown attribute: #{attr}"
-        end
-      end if params
-    end
-    
     def attributes
       attrs = {}
       class_attributes.each do |name|
@@ -47,10 +30,6 @@ module ThePirateBay
       else
         value.inspect
       end
-    end
-    
-    def class_attributes
-      klass::ATTRS
     end
     
   end # Model

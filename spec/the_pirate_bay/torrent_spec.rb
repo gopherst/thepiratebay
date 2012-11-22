@@ -27,7 +27,8 @@ describe ThePirateBay::Torrent do
     it "returns a particular torrent" do
       stub_get("torrent/7723168").
         to_return(:status => 200, :body => fixture("torrent/find.html"))
-      api.torrents.find("7723168").css('head title').text.should include("Fringe S05E03 HDTV")
+      torrent = api.torrents.find("7723168")
+      torrent.name.should == "Fringe S05E03 HDTV x264-LOL [eztv]"
     end
   end
 end
