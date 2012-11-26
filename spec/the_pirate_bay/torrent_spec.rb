@@ -5,7 +5,7 @@ describe ThePirateBay::Torrent do
     
   context ".search" do
     before :all do
-      stub_get("search/Fringe/0/99/0").
+      stub_get("search/?q=Fringe").
         to_return(:status => 200, :body => fixture("torrent/search.html"))
       @torrents = api.torrents.search("Fringe")
     end
