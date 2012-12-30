@@ -21,12 +21,12 @@ module ThePirateBay
       :imdb_id          => "Info"
     }.freeze
     
-    ATTRS = [:id, *ATTRS_MAP.keys].freeze
-    SKIP_ATTRS = [:hash, :tags, :imdb_id].freeze
+    ATTRS = [:id, :magnet_uri, *ATTRS_MAP.keys].freeze
+    SKIP_ATTRS = [:hash, :imdb_id].freeze
     
     # Torrent attributes:
-    #  id, name, description, seeders, leechers, hash, magnet_uri, quality, size, type,
-    #  uploaded_at, uploaded_by, comments_count, files_count, spoken_language, written_language, imdb_id
+    #  id, name, magnet_uri, description, seeders, leechers, quality, size, type, hash,
+    #  uploaded_at, uploaded_by, comments_count, files_count, spoken_language, written_language, tags, imdb_id
     
     attr_accessor *ATTRS, :comments, :uploader, :html
 
@@ -108,7 +108,11 @@ module ThePirateBay
     def name
       @name ||= html.css("div#title").text.sanitize!
     end
-    
+
+    def magnet_uri
+      @magnet_uri ||= html.css("div.download a").attribute("href").value
+    end
+
     def hash
       @hash ||= html.css("#details dd")[-1].next.text.strip
     end
