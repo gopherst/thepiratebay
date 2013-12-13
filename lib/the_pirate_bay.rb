@@ -7,7 +7,7 @@ require "the_pirate_bay/client"
 
 module ThePirateBay
 
-  ENDPOINT = "http://thepiratebay.sx".freeze
+  ENDPOINT = "http://thepiratebay.pe".freeze
 
   class << self
 
