@@ -21,43 +21,43 @@ module ThePirateBay
     end
 
     def id
-      @id ||= html.css('td[2] div.detName').inner_html.match(/\/torrent\/(\d+)\//)[1]
+      @id ||= html.css('td')[1].css('div.detName').inner_html.match(/\/torrent\/(\d+)\//)[1]
     end
 
     def name
-      @name ||= html.css('td[2] div.detName a').text
+      @name ||= html.css('td')[2].css('div.detName a').text
     end
 
     def type
-      @type ||= html.css('td[1] a').map(&:text).join(" > ")
+      @type ||= html.css('td').css('a').map(&:text).join(" > ")
     end
 
     def size
-      @size ||= html.css('td[2] font.detDesc').text.match(/Size (.*),/)[1].gsub('i', '')
+      @size ||= html.css('td')[1].css('font.detDesc').text.match(/Size (.*),/)[1].gsub('i', '')
     end
 
     def seeders
-      @seeders ||= html.css('td[3]').text
+      @seeders ||= html.css('td')[2].text
     end
 
     def leechers
-      @leechers ||= html.css('td[4]').text
+      @leechers ||= html.css('td')[3].text
     end
 
     def magnet_uri
-      @magnet_uri ||= html.css('td[2] div.detName + a').attribute("href").value
+      @magnet_uri ||= html.css('td')[1].css('div.detName + a').attribute("href").value
     end
 
     def uploaded_at
-      @uploaded_at ||= html.css('td[2] font.detDesc').text.match(/Uploaded (.*), S/)[1]
+      @uploaded_at ||= html.css('td')[1].css('font.detDesc').text.match(/Uploaded (.*), S/)[1]
     end
 
     def uploaded_by
-      @uploaded_by ||= html.css('td[2] font.detDesc a').text
+      @uploaded_by ||= html.css('td')[1].css('font.detDesc a').text
     end
 
     def comments_count
-      @comments_count ||= unless (comments = html.css('td[2] img[@src*="comment.gif"]')).empty?
+      @comments_count ||= unless (comments = html.css('td')[1].css('img[@src*="comment.gif"]')).empty?
         comments.attribute("alt").value.match(/\d+/)[0]
       end
     end
