@@ -46,7 +46,8 @@ module ThePirateBay
       #
       # Returns an array of ThePirateBay::Torrent::Collection objects.
       def search(query)
-        html = request("search/#{query}") # Returns search html
+        uri = "search/" + CGI::escape(query)
+        html = request(uri) # Returns search html
 
         # Get torrents table rows from html
         # and return as ruby objects
