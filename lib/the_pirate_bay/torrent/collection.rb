@@ -21,19 +21,19 @@ module ThePirateBay
     end
 
     def id
-      @id ||= html.css('td')[1].css('div.detName').inner_html.match(/\/torrent\/(\d+)\//)[1]
+      @id ||= html.css('td div.detName').inner_html.match(/\/torrent\/(\d+)\//)[1]
     end
 
     def name
-      @name ||= html.css('td')[2].css('div.detName a').text
+      @name ||= html.css('td div.detName a').text
     end
 
     def type
-      @type ||= html.css('td').css('a').map(&:text).join(" > ")
+      @type ||= html.css('td[1] a').map(&:text).join(" > ")
     end
 
     def size
-      @size ||= html.css('td')[1].css('font.detDesc').text.match(/Size (.*),/)[1].gsub('i', '')
+      @size ||= html.css('td font.detDesc').text.match(/Size (.*),/)[1].gsub('i', '')
     end
 
     def seeders

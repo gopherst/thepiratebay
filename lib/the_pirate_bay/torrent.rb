@@ -121,6 +121,11 @@ module ThePirateBay
       @description ||= html.css("div.nfo").text.strip
     end
 
+    def imdb_id
+      @imdb_id ||= html.css("#details dd a[title=IMDB]").attribute("href").value.
+        match(/\/(\w+)\/$/)[1]
+    end
+
     private
 
     def attributes_map
