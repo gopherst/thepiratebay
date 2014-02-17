@@ -1,35 +1,45 @@
 module ThePirateBay
-  class Torrent
+  class Torrent < HyperAPI::Base
     extend Connection
-    include Model
 
-    ATTRS_MAP = {
-      :name             => "Title",
-      :description      => "Description",
-      :seeders          => "Seeders",
-      :leechers         => "Leechers",
-      :quality          => "Quality",
-      :size             => "Size",
-      :type             => "Type",
-      :hash             => "Info Hash",
-      :uploaded_at      => "Uploaded",
-      :uploaded_by      => "By",
-      :comments_count   => "Comments",
-      :files_count      => "Files",
-      :spoken_language  => "Spoken language(s)",
-      :written_language => "Texted language(s)",
-      :tags             => "Tag(s)",
-      :imdb_id          => "Info"
-    }.freeze
+    integer id: 'a[title=Files]' do
+      attribute('href').value.match(/(\d+)\/$/)[1]
+    end
 
-    ATTRS = [:id, :magnet_uri, *ATTRS_MAP.keys].freeze
-    SKIP_ATTRS = [:hash, :imdb_id].freeze
+    string name: 'div#title' do
+      text.sanitize!
+    end
 
-    # Torrent attributes:
-    #  id, name, magnet_uri, description, seeders, leechers, quality, size, type, hash,
-    #  uploaded_at, uploaded_by, comments_count, files_count, spoken_language, written_language, tags, imdb_id
+    string magnet_uri: 'div.download a' do
+      attribute('href').value
+    end
 
-    attr_accessor *ATTRS, :comments, :uploader, :html
+    string hash: '#details dd' do
+      last.next.text.strip
+    end
+
+    string description: 'div.nfo' do
+      text.strip
+    end
+
+    string imdb_id: '#details dd a[title=IMDB]' do
+      attribute('href').value.match(/\/(\w+)\/$/)[1]
+    end
+
+    OPTIONAL_ATTRS = {
+      :seeders          => 'Seeders',
+      :leechers         => 'Leechers',
+      :quality          => 'Quality',
+      :size             => 'Size',
+      :type             => 'Type',
+      :uploaded_at      => 'Uploaded',
+      :uploaded_by      => 'By',
+      :comments_count   => 'Comments',
+      :files_count      => 'Files',
+      :spoken_language  => 'Spoken language(s)',
+      :written_language => 'Texted language(s)',
+      :tags             => 'Tag(s)',
+    }
 
     class << self
 
@@ -42,18 +52,18 @@ module ThePirateBay
       #
       # Examples
       #
-      #    search("Fringe")
-      #    search("Fringe s05e07")
+      #    search('Fringe')
+      #    search('Fringe s05e07')
       #
       # Returns an array of ThePirateBay::Torrent::Collection objects.
       def search(query)
-        uri = "search/" + CGI::escape(query)
+        uri = 'search/' + CGI::escape(query)
         html = request(uri) # Returns search html
 
         # Get torrents table rows from html
         # and return as ruby objects
-        html.xpath("//table[@id='searchResult']/tr").collect do |torrent_html|
-          Torrent::Collection.new(torrent_html)
+        html.css('#searchResult tr')[1..-1].collect do |torrent_html|
+          Torrent::Collection.new(torrent_html.to_s)
         end
       end
 
@@ -65,81 +75,35 @@ module ThePirateBay
       #
       # Examples
       #
-      #    find("7723168")
+      #    find('7723168')
       #    find(7723709)
       #
       # Returns an instance of ThePirateBay::Torrent
       def find(id)
         html = request("torrent/#{id}") # Returns torrent html
-
-        # Initialize Torrent from html
-        new(id, html)
+        new(html)
       end
       alias :get :find
     end
 
-    def initialize(id, html)
-      # Save html doc to get special attributes
-      @id, @html = id, html
+    def initialize(html)
+      opt_attrs = html.css('#details dt').map(&:text).map { |a| a.gsub(':', '') }
+      values = html.css('#details dd').map(&:text)
 
-      # Get attributes and values html lists
-      attrs  = html.css("#details dt").map(&:text).map { |a| a.gsub(":", "") }
-      values = html.css("#details dd").map(&:text)
+      set_optional_attributes(opt_attrs, values)
 
-      # Set instance attributes
-      set_attributes(attrs, values)
-
-      return self
+      super(html.to_s)
     end
 
-    # Set torrent attributes from html lists
-    def set_attributes(attrs, values)
-      attrs.zip(values).each do |dirty_attr, value|
-        begin
-          attr = attributes_map.key(dirty_attr) # Map to a nice and clean attribute name (see ATTRS_MAP)
-          next if skip_attributes.include?(attr)
-          value.sanitize! # Remove weird characters
-          self.public_send("#{attr}=", value) unless value.empty?
-        rescue NoMethodError => e
-          raise e unless e.name == :"="
-          raise UnknownAttributeError, "unknown attribute: #{dirty_attr}"
+    def set_optional_attributes(opt_attrs, values)
+      opt_attrs.zip(values).each do |opt_attr, value|
+        attr = OPTIONAL_ATTRS.key(opt_attr) or next
+        instance_variable_set("@#{attr}", value.sanitize!)
+
+        self.class.send :define_method, attr do
+          instance_variable_get("@#{attr}")
         end
       end
-    end
-
-    def name
-      @name ||= html.css("div#title").text.sanitize!
-    end
-
-    def magnet_uri
-      @magnet_uri ||= html.css("div.download a").attribute("href").value
-    end
-
-    def hash
-      @hash ||= html.css("#details dd")[-1].next.text.strip
-    end
-
-    def description
-      @description ||= html.css("div.nfo").text.strip
-    end
-
-    def imdb_id
-      @imdb_id ||= html.css("#details dd a[title=IMDB]").attribute("href").value.
-        match(/\/(\w+)\/$/)[1]
-    end
-
-    private
-
-    def attributes_map
-      ATTRS_MAP
-    end
-
-    def class_attributes
-      ATTRS
-    end
-
-    def skip_attributes
-      SKIP_ATTRS
     end
 
   end # Torrent

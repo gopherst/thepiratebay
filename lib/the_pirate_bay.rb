@@ -1,6 +1,7 @@
+require 'hyper_api'
+
 require 'the_pirate_bay/core_ext/string'
 require 'the_pirate_bay/version'
-require 'the_pirate_bay/model'
 require 'the_pirate_bay/connection'
 require 'the_pirate_bay/client'
 
