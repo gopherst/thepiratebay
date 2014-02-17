@@ -1,21 +1,20 @@
-require "the_pirate_bay/core_ext/string"
-require "the_pirate_bay/errors"
-require "the_pirate_bay/version"
-require "the_pirate_bay/api"
-require "the_pirate_bay/model"
-require "the_pirate_bay/client"
+require 'the_pirate_bay/core_ext/string'
+require 'the_pirate_bay/version'
+require 'the_pirate_bay/model'
+require 'the_pirate_bay/connection'
+require 'the_pirate_bay/client'
 
 module ThePirateBay
 
-  ENDPOINT = "http://thepiratebay.org".freeze
+  ENDPOINT = 'http://thepiratebay.org'.freeze
 
   class << self
 
     # Handle for the client instance
     attr_accessor :api_client
 
-    def new(options={}, &block)
-      @api_client = ThePirateBay::Client.new(options, &block)
+    def new
+      @api_client = ThePirateBay::Client.new
     end
 
     # Delegate to ThePirateBay::Client

@@ -1,5 +1,6 @@
 module ThePirateBay
-  class Torrent < API
+  class Torrent
+    extend Connection
     include Model
 
     ATTRS_MAP = {
