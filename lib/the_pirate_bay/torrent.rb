@@ -62,7 +62,11 @@ module ThePirateBay
 
         # Get torrents table rows from html
         # and return as ruby objects
-        html.css('#searchResult tr')[1..-1].collect do |torrent_html|
+        node_set = html.css('#searchResult tr')[1..-1]
+
+        return [] if node_set == nil
+
+        node_set.collect do |torrent_html|
           Torrent::Collection.new(torrent_html.to_s)
         end
       end

@@ -4,5 +4,5 @@ source 'https://rubygems.org'
 gemspec
 
 group :test do
-  gem "rake", ">= 0.8.7"
+  gem "rake", ">= 0.8.7", "< 11.0.0"
 end
