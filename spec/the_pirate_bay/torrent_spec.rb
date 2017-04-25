@@ -3,33 +3,48 @@ require 'spec_helper'
 describe ThePirateBay::Torrent do
   let(:api) { ThePirateBay.new }
 
-  context '.search' do
-    before do
-      stub_get('search/Fringe').
-        to_return(:status => 200, :body => fixture('torrent/search.html'))
-      @torrents = api.torrents.search('Fringe')
+  describe '.search' do
+    context 'without results' do
+      before do
+        stub_get('search/Rare').
+          to_return(:status => 200, :body => fixture('torrent/search_no_results.html'))
+        @torrents = api.torrents.search('Rare')
+      end
+
+      it 'returns empty array' do
+        expect(@torrents.class).to eq(Array)
+        expect(@torrents.count).to eq(0)
+      end
     end
 
-    it 'returns torrents results' do
-      expect(@torrents.class).to eq(Array)
-    end
+    context 'with results' do
+      before do
+        stub_get('search/Fringe').
+          to_return(:status => 200, :body => fixture('torrent/search.html'))
+        @torrents = api.torrents.search('Fringe')
+      end
 
-    it 'instantiates torrents collection objects' do
-      expect(@torrents.first.class).to eq(ThePirateBay::Torrent::Collection)
-    end
+      it 'returns torrents results' do
+        expect(@torrents.class).to eq(Array)
+      end
 
-    it 'parses torrents attributes correctly' do
-      torrent = @torrents.first
-      expect(torrent.id).to eq(7810640)
-      expect(torrent.name).to eq('Fringe S05E06 Season 5 Episode 6 HDTV x264 [GlowGaze]')
-      expect(torrent.type).to eq('Video > TV shows')
-      expect(torrent.size).to eq('303.89 MB')
-      expect(torrent.seeders).to eq(413)
-      expect(torrent.leechers).to eq(117)
-      expect(torrent.magnet_uri).to eq('magnet:?xt=urn:btih:0f4e3c1a4618b6d9658427e7778c602cd7c05ea0&dn=Fringe+S05E06+Season+5+Episode+6+HDTV+x264+%5BGlowGaze%5D&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.istole.it%3A6969&tr=udp%3A%2F%2Ftracker.ccc.de%3A80')
-      expect(torrent.uploaded_at).to eq('Today 04:11')
-      expect(torrent.uploaded_by).to eq('GlowGaze')
-      expect(torrent.comments_count).to eq(2)
+      it 'instantiates torrents collection objects' do
+        expect(@torrents.first.class).to eq(ThePirateBay::Torrent::Collection)
+      end
+
+      it 'parses torrents attributes correctly' do
+        torrent = @torrents.first
+        expect(torrent.id).to eq(7810640)
+        expect(torrent.name).to eq('Fringe S05E06 Season 5 Episode 6 HDTV x264 [GlowGaze]')
+        expect(torrent.type).to eq('Video > TV shows')
+        expect(torrent.size).to eq('303.89 MB')
+        expect(torrent.seeders).to eq(413)
+        expect(torrent.leechers).to eq(117)
+        expect(torrent.magnet_uri).to eq('magnet:?xt=urn:btih:0f4e3c1a4618b6d9658427e7778c602cd7c05ea0&dn=Fringe+S05E06+Season+5+Episode+6+HDTV+x264+%5BGlowGaze%5D&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.istole.it%3A6969&tr=udp%3A%2F%2Ftracker.ccc.de%3A80')
+        expect(torrent.uploaded_at).to eq('Today 04:11')
+        expect(torrent.uploaded_by).to eq('GlowGaze')
+        expect(torrent.comments_count).to eq(2)
+      end
     end
   end
 
